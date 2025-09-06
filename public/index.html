@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Quantum Edge Hub Supreme</title>
+  <link rel="stylesheet" href="/style.css"/>
+  <link rel="icon" href="/favicon.svg"/>
+  <link rel="manifest" href="/manifest.webmanifest"/>
+</head>
+<body>
+  <header class="topbar">
+    <img src="/logo.svg" alt="QEHS" class="logo"/>
+    <nav class="nav">
+      <a href="/admin/">Admin</a>
+      <a href="/admin/audit.html">Audit</a>
+      <a href="/admin/webhooks.html">Webhooks</a>
+      <a href="/auth/">Auth</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>Quantum Edge Hub Supreme</h1>
+      <p>Witaj w Twoim globalnym hubie. Wszystko pod ręką: deploy, integracje, analityka, AI, audio.</p>
+      <ul>
+        <li>GA4 Measurement Protocol proxy → <code>/api/ga4/collect</code></li>
+        <li>TikTok Events API → <code>/api/tiktok/track</code></li>
+        <li>OpenAI Chat proxy → <code>/api/openai/chat</code></li>
+        <li>ElevenLabs TTS → <code>/api/tts/eleven</code></li>
+        <li>Webhook Verify (HMAC/Stripe) → <code>/api/webhooks/ingest</code></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Test zdrowia</h2>
+      <button id="btnHealth">Sprawdź /api/health</button>
+      <pre id="outHealth"></pre>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('btnHealth')?.addEventListener('click', async () => {
+      const r = await fetch('/api/health');
+      document.getElementById('outHealth').textContent = await r.text();
+    });
+  </script>
+</body>
+</html>
