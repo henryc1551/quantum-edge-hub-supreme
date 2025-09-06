@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8"/>
+  <title>QEHS • Audit Logs</title>
+  <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+  <header class="topbar">
+    <img src="/logo.svg" class="logo" alt="QEHS"/>
+    <nav class="nav">
+      <a href="/admin/">Admin</a>
+      <a href="/admin/webhooks.html">Webhooks</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Ostatnie zdarzenia</h2>
+      <button id="btnLoad">Załaduj 200</button>
+      <pre id="out"></pre>
+    </section>
+
+    <section class="card">
+      <h3>Szukaj</h3>
+      <input id="email" placeholder="email"/> <input id="action" placeholder="action"/> <input id="ip" placeholder="ip"/>
+      <button id="btnSearch">Szukaj</button>
+      <pre id="out2"></pre>
+    </section>
+  </main>
+
+  <script>
+    const $ = (s)=>document.querySelector(s);
+    $('#btnLoad')?.addEventListener('click', async ()=>{
+      const r = await fetch('/api/audit/list?limit=200');
+      $('#out').textContent = await r.text();
+    });
+    $('#btnSearch')?.addEventListener('click', async ()=>{
+      const qs = new URLSearchParams({
+        email: $('#email').value,
+        action: $('#action').value,
+        ip: $('#ip').value,
+        limit: '500'
+      });
+      const r = await fetch('/api/audit/search?'+qs);
+      $('#out2').textContent = await r.text();
+    });
+  </script>
+</body>
+</html>
