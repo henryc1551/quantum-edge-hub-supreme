@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="48" viewBox="0 0 256 48">
+  <rect width="256" height="48" rx="10" fill="#031525"/>
+  <text x="16" y="33" font-family="Inter,Segoe UI,Arial" font-size="26" fill="#5aa9ff">QEHS</text>
+  <circle cx="230" cy="24" r="9" fill="none" stroke="#5aa9ff" stroke-width="2"/>
+  <circle cx="230" cy="24" r="3.5" fill="#5aa9ff"/>
+</svg>
