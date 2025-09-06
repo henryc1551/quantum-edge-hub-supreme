@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8"/>
+  <title>QEHS • Webhook Tester</title>
+  <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+  <header class="topbar">
+    <img src="/logo.svg" class="logo" alt="QEHS"/>
+    <nav class="nav">
+      <a href="/admin/">Admin</a>
+      <a href="/admin/audit.html">Audit</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Generic HMAC</h2>
+      <textarea id="body" rows="6" style="width:100%">{ "hello":"world" }</textarea><br/>
+      <input id="sig" placeholder="x-qehs-signature (base64)"/>
+      <button id="btnSend">Wyślij</button>
+      <pre id="out"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Stripe</h2>
+      <textarea id="bodyS" rows="6" style="width:100%">{ "type":"payment_intent.succeeded" }</textarea><br/>
+      <input id="sigS" placeholder="Stripe-Signature"/>
+      <button id="btnSendS">Wyślij</button>
+      <pre id="outS"></pre>
+    </section>
+  </main>
+
+  <script>
+    const post = async (url, body, headers={}) =>
+      fetch(url, { method:'POST', headers:{'content-type':'application/json', ...headers}, body: JSON.stringify(JSON.parse(body)) });
+
+    document.getElementById('btnSend')?.addEventListener('click', async ()=>{
+      const r = await post('/api/webhooks/ingest?provider=generic', document.getElementById('body').value, {
+        'x-qehs-signature': document.getElementById('sig').value
+      });
+      document.getElementById('out').textContent = await r.text();
+    });
+
+    document.getElementById('btnSendS')?.addEventListener('click', async ()=>{
+      const r = await fetch('/api/webhooks/ingest?provider=stripe', {
+        method:'POST',
+        headers:{ 'content-type':'application/json', 'stripe-signature': document.getElementById('sigS').value },
+        body: document.getElementById('bodyS').value
+      });
+      document.getElementById('outS').textContent = await r.text();
+    });
+  </script>
+</body>
+</html>
