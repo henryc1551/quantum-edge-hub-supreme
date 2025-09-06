@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8"/>
+  <title>QEHS • Admin</title>
+  <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+  <header class="topbar">
+    <img src="/logo.svg" class="logo" alt="QEHS"/>
+    <nav class="nav">
+      <a href="/admin/audit.html">Audit</a>
+      <a href="/admin/webhooks.html">Webhooks</a>
+      <a href="/auth/">Auth</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Konto właściciela</h2>
+      <p>Jeśli to Twój pierwszy raz — otwórz <code>/admin/bootstrap</code> aby utworzyć <b>owner@local / przyjazn</b>.</p>
+      <button id="btnLogout">Wyloguj</button>
+      <pre id="out"></pre>
+    </section>
+
+    <section class="card">
+      <h3>Ustawienia bezpieczeństwa</h3>
+      <ul>
+        <li>Lockout po nieudanych próbach logowania</li>
+        <li>Sesje powiązane z User-Agent/IP (ENV)</li>
+        <li>Wymuszony HTTPS + HSTS + twarde nagłówki</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('btnLogout')?.addEventListener('click', async () => {
+      const r = await fetch('/api/auth/logout', { method: 'POST' });
+      document.getElementById('out').textContent = await r.text();
+    });
+  </script>
+</body>
+</html>
