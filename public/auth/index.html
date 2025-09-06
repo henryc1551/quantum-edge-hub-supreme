@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8"/>
+  <title>QEHS • Auth</title>
+  <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+  <header class="topbar">
+    <img src="/logo.svg" class="logo" alt="QEHS"/>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/admin/">Admin</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Logowanie (hasło)</h2>
+      <input id="email" placeholder="Email" value="owner@local"/><br/><br/>
+      <input id="password" type="password" placeholder="Hasło" value="przyjazn"/><br/><br/>
+      <button id="btnLogin">Zaloguj</button>
+      <pre id="out"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Kody zapasowe</h2>
+      <button id="btnGen">Generuj 10 kodów</button>
+      <pre id="outCodes"></pre>
+    </section>
+
+    <section class="card">
+      <h2>GA4 / TikTok / OpenAI / ElevenLabs – szybkie testy</h2>
+      <button id="btnGA4">Wyślij GA4 page_view</button>
+      <button id="btnTT">Wyślij TikTok test event</button>
+      <button id="btnAI">OpenAI: ping</button>
+      <button id="btnTTS">ElevenLabs: mów „Witaj QEHS”</button>
+      <pre id="outAPI"></pre>
+    </section>
+  </main>
+
+  <script src="/auth/login.js"></script>
+</body>
+</html>
