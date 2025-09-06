@@ -1,0 +1,9 @@
+{
+  "name": "Quantum Edge Hub Supreme",
+  "short_name": "QEHS",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#031525",
+  "theme_color": "#5aa9ff",
+  "icons": [{ "src": "/favicon.svg", "sizes": "64x64", "type": "image/svg+xml" }]
+}
