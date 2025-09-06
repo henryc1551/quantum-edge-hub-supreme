@@ -1,0 +1,11 @@
+# edytory
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# cache / build
+dist/
+out/
+.cache/
+tmp/
