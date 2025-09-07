@@ -1,0 +1,4 @@
+Contact: mailto:security@YOUR-DOMAIN
+Preferred-Languages: en, pl
+Policy: https://YOUR-DOMAIN/SECURITY.md
+Expires: 2030-01-01T00:00:00Z
